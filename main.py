@@ -7,11 +7,21 @@ load_dotenv()
 
 client = genai.Client()
 MODEL  = "gemini-3.8-flash"
-prompt = "Hello!"
 
-interaction = client.interactions.create(
-    model = MODEL,
-    input = prompt # Prompt
-)
+running_status = True
 
-print(interaction.output_text)
+while(running_status):
+    prompt = input("User: ")
+
+    if prompt == "/quit":
+        running_status = False
+        break
+
+    interaction = client.interactions.create(
+        model = MODEL,
+        input = prompt # Prompt
+    )
+
+    print(f"Output: {interaction.output_text}")
+    print("---------------------\n")
+
