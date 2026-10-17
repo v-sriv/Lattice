@@ -9,6 +9,7 @@ client = genai.Client()
 MODEL  = "gemini-3.8-flash"
 
 running_status = True
+last_interaction_id = ""
 
 while(running_status):
     prompt = input("User: ")
@@ -19,8 +20,11 @@ while(running_status):
 
     interaction = client.interactions.create(
         model = MODEL,
-        input = prompt # Prompt
+        input = prompt, # Prompt
+        previous_interaction_id = last_interaction_id
     )
+
+    last_interaction_id = interaction.id
 
     print(f"Output: {interaction.output_text}")
     print("---------------------\n")
