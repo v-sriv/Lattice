@@ -21,11 +21,16 @@ while(running_status):
     interaction = client.interactions.create(
         model = MODEL,
         input = prompt, # Prompt
+        stream = True,
         previous_interaction_id = last_interaction_id
     )
 
-    last_interaction_id = interaction.id
+    # print(f"Output: {interaction.output_text}")
+    for event in interaction:
+        if event.event_type == "step.delta":
+            if event.delta.type == "text":
+                print(event.delta.text, end = "", flush = True)
+        elif event.event_type == "interaction.completed":
+            last_interaction_id = event.interaction.id            
 
-    print(f"Output: {interaction.output_text}")
-    print("---------------------\n")
-
+    print("\n---------------------\n")
