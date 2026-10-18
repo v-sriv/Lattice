@@ -1,3 +1,48 @@
-* {
-    color: darkred
+html,
+body {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    text-align: center;
+}
+
+main {
+    background-color: blanchedalmond;
+    min-height: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+}
+
+button {
+    padding: 10px;
+    color: aliceblue;
+    background-color: firebrick;
+}
+
+button:hover {
+    color: beige;
+    background-color: indianred
+}
+
+#messages {
+    display: flex;
+    justify-content: flex-end;
+    height: 100%;
+    flex: 1;
+    flex-direction: column;
 }
