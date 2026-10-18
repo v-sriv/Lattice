@@ -1,3 +1,5 @@
+const API_URL = "localhost:8000"
+
 const chatbox = document.getElementById("chatbox-input")
 const chatboxForm = document.getElementById("chatbox-form")
 
@@ -9,6 +11,10 @@ function handleSubmit(e) {
     const paragraph = document.createElement("p")
     paragraph.innerText = chatbox.value
     messages.append(paragraph)
+    fetch(API_URL, {
+        method: "POST",
+        body: chatbox.value
+    })
     chatbox.value = ""
 }
 
